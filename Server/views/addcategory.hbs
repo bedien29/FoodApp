@@ -1,0 +1,167 @@
+<section id="container">
+  <header class="header black-bg">
+    <div class="sidebar-toggle-box">
+      <div
+        class="fa fa-bars tooltips"
+        data-placement="right"
+        data-original-title="Toggle Navigation"
+      ></div>
+    </div>
+    <!--logo start-->
+    <a href="http://localhost:3008/products" class="logo"><b>FOOD NICE</b></a>
+    <!--logo end-->
+    <div class="top-menu">
+      <ul class="nav pull-right top-menu">
+        <li><a class="logout" href="/dang-xuat">Đăng xuất</a></li>
+      </ul>
+    </div>
+  </header>
+  <!--header end-->
+
+  <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+  <!--sidebar start-->
+  <aside>
+    <div id="sidebar" class="nav-collapse">
+      <!-- sidebar menu start-->
+      <ul class="sidebar-menu" id="nav-accordion">
+
+        <p class="centered"><a href="http://localhost:3000/san-pham"><img
+              src="/images/avatarfood.jpg"
+              class="img-circle"
+              width="60"
+            /></a></p>
+        <h5 class="centered">ADMIN</h5>
+        <li class="mt">
+          <a href="http://localhost:3000/san-pham/addproduct">
+            <i class="fa fa-tasks"></i>
+            <span>Thêm mới</span>
+          </a>
+        </li>
+        <li class="sub-menu">
+          <a href="http://localhost:3008/products">
+            <i class="fa fa-th"></i>
+            <span>Danh Sách</span>
+          </a>
+        </li>
+        <li class="sub-menu">
+          <a href="http://localhost:3008/products/thongke">
+            <i class="fa fa-bar-chart-o"></i>
+            <span>Thống Kê</span>
+          </a>
+        </li>
+
+      </ul>
+      <!-- sidebar menu end-->
+    </div>
+  </aside>
+  <!--sidebar end-->
+
+  <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+  <!--main content start-->
+  <section id="main-content">
+    <section class="wrapper">
+      <h3><i class="fa fa-angle-right"></i> Thêm Mới</h3>
+
+      <!-- BASIC FORM ELELEMNTS -->
+      <div class="row mt">
+        <div class="col-lg-12">
+          <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Thêm mới sản phẩm</h4>
+            <form
+              role="form"
+              class="form-horizontal style-form"
+              method="post"
+              action="/san-pham/newcategory"
+              enctype="multipart/form-data"
+            >
+              {{!-- <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Tên loại sản phẩm</label>
+                <div class="col-sm-10">
+                  {{! <select class="form-control" name="category_id">
+                                        <option value="1">apple</option>
+                                        <option value="2">xiaomi</option>
+                                    </select> }}
+                  <select class="form-control" name="category_id">
+                    {{#each categories}}
+                      <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div> --}}
+              <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Tên loại sản phẩm</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    id="name"
+                    onchange="validation()"
+                    class="form-control"
+                    name="name"
+                  />
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Mô tả</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="description" />
+                </div>
+              </div>
+              {{!-- <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Hình ảnh</label>
+
+                <div class="col-sm-10">
+                  <input
+                    type="file"
+                    class="form-control"
+                    onchange="onChangeFile();"
+                    id="image-file"
+                    name="image"
+                  />
+                  <img
+                    id="image-view"
+                    style="height: 100px; width: 100px; display: none; object-fit: cover;"
+                    class="form-control"
+                    src=""
+                  />
+                </div>
+              </div> --}}
+              <div class="form-group">
+                <div class="top-menu">
+                  <ul class="nav pull-right top-menu" style="margin-right: 2%">
+                    {{! <button type="button" class="btn btn-success">Success</button> }}
+                    <button
+                      type="submit"
+                      id="submit"
+                      class="btn btn-success"
+                    >Submit</button>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- col-lg-12-->
+      </div><!-- /row -->
+
+    </section>
+  </section><!-- /MAIN CONTENT -->
+
+</section>
+
+<script>
+  const onChangeFile = () => {
+    const file = document.getElementById('image-file').files[0];
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('image-view').src = e.target.result;
+      document.getElementById('image-view').style.display ='block';
+    }
+    reader.readAsDataURL(file);
+  }
+
+</script>

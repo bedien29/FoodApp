@@ -1,0 +1,193 @@
+<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{{!-- https://cdnjs.com/libraries/font-awesome --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/toastmes.css">
+
+<div class="main">
+
+	<!-- Sing in  Form -->
+	<section class="sign-in">
+		<div class="container">
+			<div class="signin-content">
+				<div class="signin-image">
+					<figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
+					<a href="http://localhost:3000/register" class="signup-image-link">Create an account</a>
+				</div>
+
+				<div class="signin-form">
+					<h2 class="form-title">Sign up</h2>
+					<form method="POST" class="register-form" action="/login" >
+						<div class="form-group">
+							<label><i class="zmdi zmdi-email"></i></label>
+							<input type="email" name="email" placeholder="Your Email" />
+						</div>
+						<div class="form-group">
+							<label><i class="zmdi zmdi-lock"></i></label>
+							<input type="password" name="password" placeholder="Password" />
+						</div>
+						<div class="form-group">
+							<input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+							<label for="remember-me" class="label-agree-term"><span><span></span></span>Remember
+								me</label>
+						</div>
+						<div  class="form-group form-button">
+							<input  type="submit" class="form-submit" onclick=""/>
+						</div>
+					</form>
+					<div class="social-login">
+						<span class="social-label">Or login with</span>
+						<ul class="socials">
+							<li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+							<li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+							<li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		{{!-- Success --}}
+			<div id="toast">
+				{{!-- <div class="toast toast--success">
+					<div class="toast__icon">
+						<i class="fa-solid fa-circle-check"></i>
+					</div>
+					<div class="toast__body">
+						<h3 class="toast__title">Success!</h3>
+						<p class="toast__message">Thành công rồiasdasdasdasdsadasd</p>
+					</div>
+					<div class="toast__close">
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+				</div> --}}
+			</div>
+
+			{{!-- Error --}}
+			{{!-- <div class="toast toast--error">
+				<div class="toast__icon">
+					<i class="fa-solid fa-circle-check"></i>
+				</div>
+				<div class="toast__body">
+					<h3 class="toast__title">Error!</h3>
+					<p class="toast__message">Thành công rồiasdasdasdasdsadasd</p>
+				</div>
+				<div class="toast__close">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+			</div> --}}
+	</section>
+
+</div>
+				<div class="toast__body">
+					<h3 class="toast__title">${title}</h3>
+					<p class="toast__message">${message}</p>
+				</div>
+				<div class="toast__close">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+			`;
+			main.appendChild(toast);
+
+			setTimeout(() => {
+				main.removeChild(toast);
+			}, duration + 1000);
+		}
+	}
+
+	//toast({
+	//	title: "Success!",
+	//	message: "Thành công rồi",
+	//	type: "error",
+	//	duration: 3000
+	//});
+
+	function showSuccessToast() {
+		toast({
+		title: "Thành công!",
+		message: "Bạn đã đăng ký thành công tài khoản",
+		type: "success",
+		duration: 5000
+		});
+	}
+
+  	function showErrorToast() {
+		toast({
+		title: "Thất bại!",
+		message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+		type: "error",
+		duration: 5000
+		});
+	}
+</script>
+
+<script>
+
+	function toast({
+		title = '',
+		message = '',
+		type = 'error',
+		duration = 3000
+		}) {
+		const main = document.getElementById("toast");
+		if(main){
+			const toast = document.createElement('div');
+			const icons  = {
+				success: 'fas fa-check-circle',
+				error: 'fas fa-solid fa-circle-exclamation'
+			}
+			const icon = icons[type];
+			const delay = (duration / 1000).toFixed(2);
+
+			toast.classList.add('toast', `toast--${type}`);
+			toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+			toast.innerHTML = `
+				<div class="toast__icon">
+					<i class="${icon}"></i>
+				</div>
+				<div class="toast__body">
+					<h3 class="toast__title">${title}</h3>
+					<p class="toast__message">${message}</p>
+				</div>
+				<div class="toast__close">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+			`;
+			main.appendChild(toast);
+
+			setTimeout(() => {
+				main.removeChild(toast);
+			}, duration + 1000);
+		}
+	}
+
+	//toast({
+	//	title: "Success!",
+	//	message: "Thành công rồi",
+	//	type: "error",
+	//	duration: 3000
+	//});
+
+	function showSuccessToast() {
+		toast({
+		title: "Thành công!",
+		message: "Bạn đã đăng ký thành công tài khoản",
+		type: "success",
+		duration: 5000
+		});
+	}
+
+  	function showErrorToast() {
+		toast({
+		title: "Thất bại!",
+		message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+		type: "error",
+		duration: 5000
+		});
+	}
+</script>
